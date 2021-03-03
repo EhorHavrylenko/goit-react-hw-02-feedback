@@ -1,0 +1,11 @@
+.text{
+    color: white;
+    font-size: 30px;
+}
+
+.contact{
+   width: 445px;;
+   height: 30px;  
+   outline: 0;
+   margin-bottom: 70px;
+}
