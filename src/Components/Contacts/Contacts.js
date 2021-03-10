@@ -1,8 +1,5 @@
 import React from 'react';
 import styles from './contacts.module.css';
-import shortid from 'shortid';
-
-
 
 const ContactItem = ({ name, phone, onRemove, id }) => {
 	return (
@@ -19,7 +16,7 @@ const ContactList = ({ contacts, onRemove }) => {
     if(contacts.length === 0) return null
 	return (
 		<ul className={styles.list}>
-			{contacts.map((contact) => <ContactItem key={shortid.generate()} id={contact.id} name={contact.name} phone={contact.phone} onRemove={onRemove} />)}
+			{contacts.map((contact) => <ContactItem key={contact.name} id={contact.id} name={contact.name} phone={contact.phone} onRemove={onRemove} />)}
 		</ul>
 	);
 };

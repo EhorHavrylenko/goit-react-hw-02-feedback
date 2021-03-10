@@ -7,14 +7,27 @@ import Form from './Components/Form/Form';
 
 class App extends Component {
 	state = {
-		contacts: [
-			{ id: 'id-1', name: 'Rosie Simpson', phone: '459-12-56' },
-			{ id: 'id-2', name: 'Hermione Kline', phone: '443-89-12' },
-			{ id: 'id-3', name: 'Eden Clements', phone: '645-17-79' },
-			{ id: 'id-4', name: 'Annie Copeland', phone: '227-91-26' }
-		],
+		contacts: [],
 		filter: ''
 	};
+
+	componentDidMount() {
+		const localStorageContacts = localStorage.getItem('contacts');
+		const parsedContacts = JSON.parse(localStorageContacts);
+
+		if (parsedContacts) {
+			this.setState({ contacts: parsedContacts });
+		}
+
+		// this.setState({ contacts: parsedContacts });
+
+	}
+
+	componentDidUpdate(prevProps, prevState) {
+		if (this.state.contacts !== prevState.contacts) {
+			localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
+		}
+	}
 
 	handleAddNewContact = (newContact) => {
 		this.setState(({ contacts }) => ({
